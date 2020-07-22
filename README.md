@@ -129,3 +129,53 @@ Trae el primer documento que cumpla con el filtro de acuerdo al orden natural en
 ```
 db.inventory.findOne( { status: "A", qty: { $lt: 30 } } )
 ```
+
+## Update
+
+### Update One
+
+```
+db.inventory.updateOne(
+   { item: "paper" },
+   {
+     $set: { "size.uom": "cm", status: "P" },
+     $currentDate: { lastModified: true }
+   })
+```
+
+### Update Many
+
+```
+db.inventory.find({qty: {$lt: 50}})
+```
+
+```
+db.inventory.updateMany(
+   { "qty": { $lt: 50 } },
+   {
+     $set: { "size.uom": "in", status: "P" },
+     $currentDate: { lastModified: true }
+   }
+)
+```
+
+```
+db.inventory.find({qty: {$lt: 50}})
+```
+
+### Reemplazar un documento y conservar su \_id
+
+```
+db.inventory.find({item: "paper"})
+```
+
+```
+db.inventory.replaceOne(
+   { item: "paper" },
+   { item: "paper", instock: [ { warehouse: "A", qty: 60 }, { warehouse: "B", qty: 40 } ] }
+)
+```
+
+```
+db.inventory.find({item: "paper"})
+```
