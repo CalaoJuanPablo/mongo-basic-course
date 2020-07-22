@@ -98,7 +98,9 @@ db.inventory.insertOne(
 )
 ```
 
+```
 db.inventory.find( {} )
+```
 
 **Igualdad**
 
@@ -178,4 +180,32 @@ db.inventory.replaceOne(
 
 ```
 db.inventory.find({item: "paper"})
+```
+
+## Delete
+
+```
+db.inventory.find({status: "A"})
+```
+
+### Borrar muchos documentos de acuerdo a un filtro
+
+```
+db.inventory.deleteMany({ status : "A" })
+```
+
+```
+db.inventory.find({status: "D"})
+```
+
+### Borrar un documento
+
+```
+db.inventory.deleteOne( { status: "D" } )
+```
+
+### Borrar todos los documentos de una base datos
+
+```
+db.inventory.deleteMany({})
 ```
